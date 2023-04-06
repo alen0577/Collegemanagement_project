@@ -1,0 +1,56 @@
+{% extends 'user/base.html' %}
+
+{% block title %}
+Edit Profile
+{% endblock title %}
+
+{% block content %}
+{% load static %}
+
+<div class="nav bg-dark-subtle">
+    <h1 class="text-black" style="margin-left: 40%;">Edit Profile</h1>
+</div>
+
+
+
+<div class="container bg-light" style="border-radius: 10px; width:50%">
+   <form action="/editdetails/{{edit.id}}" method="post" enctype="multipart/form-data" class="form pt-5 pb-5" style="width: 50%; margin-left:25%">
+       {% csrf_token %}
+
+       <input type="text" name="first_name" class="form-control"value="{{user.first_name}}" placeholder="First Name"><br>
+       <input type="text" name="last_name"class="form-control" value="{{user.last_name}}" placeholder="Last Name"><br>
+       <input type="text" name="username" class="form-control" value="{{user.username}}" placeholder="Username"><br>
+       <input type="email" name="email" class="form-control" value="{{user.email}}" placeholder="Email"><br>
+       <input type="text" name="gender" class="form-control" value="{{edit.Gender}}" placeholder="Gender"><br>
+       <input type="text" name="dob" class="form-control" value="{{edit.DOB}}" placeholder="Date of Birth"><br>
+       <input type="text" name="age" class="form-control" value="{{edit.Age}}" placeholder="Age"><br>
+       <input type="text" name="number" class="form-control" value="{{edit.Mobile}}" placeholder="Mobile Number"><br>
+       <input type="text" name="address" class="form-control" value="{{edit.Address}}" placeholder="Address"><br>
+       <label class="form-control">Profile Picture</label><br>
+       {% if edit.Image %}
+            <img id="a1" src="{{edit.Image.url}}" style="width: 250px;margin-left: 112px;" alt=""><br>
+            <input type="file" name="files" accept="image/*" value="{{old}}" style="margin-left: 220px;"><br><br>
+            {% else %}
+            <img src="{% static 'default.png' %}" style="width: 200px;margin-left: 112px;" alt=""><br>
+       <input type="file" name="image" class="form-control" accept="image/*"><br>
+       {% endif %}
+       <select class="form-control" name="select" id="qwerty">
+        
+
+        <option value="{{edit.Course.id}}">{{ edit.Course.course_name }}</option>
+
+        {% for i in course %}
+
+        <option value="{{i.id}}">{{ i.course_name }}</option>
+
+        {% endfor %}
+
+        
+       </select>
+       
+       <button type="submit" class="btn btn-dark" style="margin-left: 40%;">Update</button>
+       <br><br>
+       
+   </form>
+</div>
+{% endblock %}

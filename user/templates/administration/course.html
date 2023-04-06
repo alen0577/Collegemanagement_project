@@ -1,0 +1,35 @@
+{% extends 'administration/base.html' %}
+
+{% block title %}
+Add Course
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="container">
+    <h3 class="alert alert-dark text-center mb-5 w-50">
+        Add Course
+    </h3>
+        <form method="post" action="{% url 'addcourse' %}" >
+            {% csrf_token %}
+            <input type="text" name="coursename" class="form-control mt-3" placeholder="Enter Course Name">
+            
+            <button type="submit" class="btn btn-dark mt-3 " style="width: 650px;">Submit</button>
+        </form>
+</div>
+<style>
+.container{
+    position: absolute;
+    left: 30%;
+    top: 27%;
+}
+input[type=text],[type=number]{
+    width: 650px;
+}
+/* .btn{
+    width: 600px;
+} */
+</style>
+
+{% endblock %}

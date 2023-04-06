@@ -1,0 +1,59 @@
+{% extends 'administration/base.html' %}
+
+{% block title %}
+Show Students
+{% endblock title %}
+
+
+{% block content %}
+
+
+
+
+<div class="container mt-5">
+    <h3 class="alert alert-dark text-center mb-5">
+        SHOW STUDENT DETAILS
+    </h3>
+    <div class="row">
+        <div class="col-sm-10">
+            <table class="table table-dark table-hover text-center ">
+                <thead>
+                    <tr>
+                        <th>NAME</th>
+                        <th>ADDRESS</th>
+                        <th>AGE</th>
+                        <th>COURSE</th>
+                        <th>DATE JOINED</th>
+                        <th>ACTION</th>
+                        
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in students %}
+                    <tr>
+                        <td>{{ p.name}}</td>
+                        <td>{{ p.address}}</td>
+                        <td>{{ p.age}}</td>
+                        <td>{{ p.Course.course_name}}</td>  
+                        <td>{{ p.join_date }}</td>   
+                        <td>
+                            <a href="{% url 'deletestd' p.id %}"><button>Delete</button></a>
+                        </td>
+                        
+                    </tr>
+                    {% endfor %}
+                </tbody> 
+        </div>
+    </div>
+</div>
+</body>
+
+<style>
+.table{
+    width: 120%;
+}
+</style>
+
+
+{% endblock %}

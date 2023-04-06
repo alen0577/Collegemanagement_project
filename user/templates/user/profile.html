@@ -1,0 +1,37 @@
+{% extends 'user/base.html' %}
+
+{% block title %}
+Profile
+{% endblock title %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+
+
+<div class="card">
+    {% if users.Image %}
+    <img src="{{users.Image.url}}" alt="" style="width:100%">
+    {% else %}
+    <img src="{% static 'default.png' %}" alt="" style="width: 100%;">
+    {% endif %}
+    <h1>{{user.first_name}}  {{user.last_name}}</h1>
+    <p class="title">Course: {{users.Course.course_name}} </p>
+    <p>Teacher Id: {{users.id}}</p>
+    <p>Username: {{user.username}}</p>
+    <p>Date of birth: {{users.DOB}} </p>
+    <p>Age: {{users.Age}}</p>
+    <p>Gender: {{users.Gender}}</p>
+    <p>Address: {{users.Address}}</p>
+    <p>Email Id: {{user.email}}</p>
+    
+
+    
+    <p><button>Contact: {{users.Mobile}}</button></p>
+    <a href="{% url 'editpage' %}">Edit Profile</a>
+  </div>
+
+
+
+
+{% endblock %}

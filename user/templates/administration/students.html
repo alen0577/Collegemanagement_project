@@ -1,0 +1,52 @@
+{% extends 'administration/base.html' %}
+
+{% block title %}
+Add Student
+{% endblock title %}
+
+
+{% block content %}
+<div class="container">
+    <h3 class="alert alert-dark text-center mb-5 w-50">
+        Add Student
+    </h3>
+        <form method="post" action="{% url 'addstudent' %}" >
+            {% csrf_token %}
+            <input type="text" name="name" class="form-control mt-3" placeholder="Enter Student Name">
+            <input type="text" name="address" class="form-control mt-3" placeholder="Enter Address">
+            <input type="number" name="age" class="form-control mt-3 mb-3" placeholder="Enter Age">
+            
+
+            <!-- <input type="date" name="joindate" class="form-control mt-3 mb-3" placeholder="Enter Joining Date"> -->
+
+            <select class="form-control" name="select" id="qwerty">
+                {% for i in course %}
+
+                <option value="{{ i.id }}">{{ i.course_name }}</option>
+
+                {% endfor %}
+            </select>
+
+
+            <button type="submit" class="btn btn-dark mt-3 " style="width: 650px;">Submit</button>
+        </form>
+</div>
+
+<style>
+.container{
+    position: absolute;
+    left: 30%;
+    top: 27%;
+}
+input[type=text],[type=number],[type=date]{
+    width: 650px;
+}
+#qwerty{
+    width: 650px;
+}
+/* .btn{
+    width: 600px;
+} */
+</style>
+
+{% endblock %}

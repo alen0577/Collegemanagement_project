@@ -1,0 +1,29 @@
+{% extends 'user/base.html' %}
+
+{% block title %}
+User Home
+{% endblock title %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        {% for message in messages %}
+        <h5>
+            <div class="alert alert-danger mt-5">
+                {{ message }}
+            </div>
+        </h5>
+            {% endfor %}
+    </div>
+    <div class="col-md-4"></div>
+</div>
+
+<div class="container-fluid"
+ style="margin-top:10%;text-align: center;">
+    <h1>
+       Welcome to USER Home Page.....
+    </h1>
+</div>
+{% endblock %}

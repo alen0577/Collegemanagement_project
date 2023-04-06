@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}
+signup
+{% endblock title %}
+
+{% block content %}
+
+<div class="nav bg-dark-subtle">
+    <h1 class="text-black" style="margin-left: 40%;">Registration</h1>
+</div>
+<div class="container">
+    {% for message in messages %}
+<h5>
+    <div class="alert alert-danger mt-5" style="width: 50%;">
+        {{ message }}
+    </div>
+</h5>
+    {% endfor %}
+</div>
+<div class="container bg-light" style="border-radius: 10px; width:50%">
+   <form action="{% url 'usercreate' %}" method="post" enctype="multipart/form-data" class="form pt-5 pb-5" style="width: 50%; margin-left:25%">
+       {% csrf_token %}
+
+       <input type="text" name="first_name" class="form-control" placeholder="First Name"><br>
+       <input type="text" name="last_name"class="form-control" placeholder="Last Name"><br>
+       <input type="text" name="username" class="form-control" placeholder="Username"><br>
+       <input type="email" name="email" class="form-control" placeholder="Email"><br>
+       <input type="text" name="gender" class="form-control" placeholder="Gender"><br>
+       <input type="text" name="dob" class="form-control" placeholder="Date of Birth"><br>
+       <input type="text" name="age" class="form-control" placeholder="Age"><br>
+       <input type="text" name="number" class="form-control" placeholder="Mobile Number"><br>
+       <input type="text" name="address" class="form-control" placeholder="Address"><br>
+       <label class="form-control">Profile Picture</label><br>
+       <input type="file" name="image" class="form-control" accept="image/*"><br>
+       <select class="form-control" name="select" id="qwerty">
+        {% for i in course %}
+
+        <option value="{{ i.id }}">{{ i.course_name }}</option>
+
+        {% endfor %}
+       </select>
+       <input type="password" name="password" class="form-control" placeholder="Password"><br>
+       <input type="password" name="cpassword" class="form-control" placeholder="Confirm Password"><br>
+       
+       <button type="submit" class="btn btn-dark" style="margin-left: 40%;">Submit</button>
+       <br><br>
+       <p class='text-muted'>Already a member. <a href="#">Login</a></p>
+   </form>
+</div>
+{% endblock %}

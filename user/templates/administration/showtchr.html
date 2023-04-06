@@ -1,0 +1,80 @@
+{% extends 'administration/base.html' %}
+{% load static %}
+{% block title %}
+Show Teachers
+{% endblock title %}
+
+
+{% block content %}
+
+
+
+
+<div class="container mt-5">
+    <h3 class="alert alert-dark text-center mb-5">
+        SHOW TEACHERS DETAILS
+    </h3>
+    <div class="row">
+        <div class="col-sm-10">
+            <table class="table table-dark table-hover text-center ">
+                <thead>
+                    <tr>
+                        <th>FIRST NAME</th>
+                        <th>LAST NAME</th>
+                        <th>USERNAME</th>
+                        <th>EMAIL</th>
+                        <th>ADDRESS</th>
+                        <th>AGE</th>
+                        <th>GENDER</th>
+                        <th>COURSE</th>
+                        <th>DATE OF BIRTH</th>
+                        <th>PHOTO</th>
+                        <th>MOBILE</th>
+                        <th>ACTION</th>
+                        
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in teachers %}
+                    <tr>
+                        <td>{{ p.Teacher.first_name}}</td>
+                        <td>{{ p.Teacher.last_name}}</td>
+                        <td>{{ p.Teacher.username}}</td>
+                        <td>{{ p.Teacher.email}}</td>
+                        <td>{{ p.Address}}</td>
+                        <td>{{ p.Age}}</td>
+                        <td>{{ p.Gender}}</td>
+                        <td>{{ p.Course.course_name}}</td>  
+                        <td>{{ p.DOB }}</td> 
+                        <td>
+                            {% if p.Image %}
+                            <img src="{{p.Image.url}}" alt="" style="width: 200px;">
+                            {% else %}
+                            <img src="{% static 'default.png' %}" alt="" style="width: 200px;height: 150px;">
+                            {% endif %}
+                        </td> 
+                        <td>{{ p.Mobile }}</td>
+                        
+
+                        <td>
+                        
+                            <a href="{% url 'deletetchr' p.id %}"><button>Delete</button></a>
+                        </td>
+                        
+                    </tr>
+                    {% endfor %}
+                </tbody> 
+        </div>
+    </div>
+</div>
+</body>
+
+<style>
+.table{
+    width: 120%;
+}
+</style>
+
+
+{% endblock %}
